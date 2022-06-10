@@ -1,4 +1,4 @@
-# avaliacao-web
+# PhoneCat - App
 
 ## Project setup
 ```

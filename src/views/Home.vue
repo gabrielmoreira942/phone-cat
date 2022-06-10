@@ -1,15 +1,11 @@
 <template>
   <v-card>
-    <div v-if="$store.state.index">
-      <div class="d-flex justify-end mt-6">
-        <v-btn class="mx-2" fab dark color="indigo" @click="create">
-          <v-icon dark> mdi-plus </v-icon>
-        </v-btn>
-      </div>
+    <div>
+      <div class="d-flex justify-end mt-6"></div>
       <v-card-title>
         <v-text-field
           append-icon="mdi-magnify"
-          label="Search"
+          label="Pesquisar..."
           single-line
           hide-details
           v-model="search"
@@ -19,55 +15,54 @@
         :headers="headers"
         :items="desserts"
         :search="search"
-      ></v-data-table>
-    </div>
-    <div v-else>
-      <Create></Create>
+        :items-per-page="5"
+        :footer-props="{
+          'items-per-page-text': 'Celulares por Página',
+        }"
+      >
+        <template v-slot:item.image="{ item }">
+          <img :src="item.image" />
+        </template>
+      </v-data-table>
     </div>
   </v-card>
 </template>
 
 <script>
-import Create from "../components/Create.vue";
-import Users from "../apis/users.js";
+import Phones from "../apis/phones.js";
 export default {
   components: {
-    Create,
-    Users,
+    Phones,
   },
   data() {
     return {
       search: "",
       headers: [
         {
-          text: "Usuários",
+          text: "Celular",
           align: "start",
           value: "name",
         },
-        { text: "Idade", value: "age" },
-        { text: "CPF", value: "cpf" },
+        { text: "Imagem", value: "image" },
+        { text: "Descrição", value: "description" },
       ],
       desserts: [],
-      index: true,
     };
   },
   created() {
-    this.desserts = Users;
-  },
-  methods: {
-    create() {
-      this.$store.state.index = false;
-    },
-  },
-  watch: {
-    form(newValue) {
-      this.desserts.push(newValue);
-    },
-  },
-  computed: {
-    form() {
-      return this.$store.state.form;
-    },
+    this.desserts = Phones;
   },
 };
 </script>
+
+<style scoped>
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+img {
+  max-width: 40px;
+  max-height: 40px;
+}
+</style>
