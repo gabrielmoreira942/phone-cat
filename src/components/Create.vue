@@ -15,12 +15,14 @@
               label="Idade"
               single-line
               hide-details
+              v-mask="'###'"
             ></v-text-field>
             <v-text-field
               v-model="cpf"
               label="CPF"
               single-line
               hide-details
+              v-mask="'###.###.###-##'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -53,6 +55,7 @@ export default {
       age: "",
       cpf: "",
       errors: [],
+      nameMask: "",
     };
   },
 

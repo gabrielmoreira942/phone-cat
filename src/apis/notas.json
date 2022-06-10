@@ -1,0 +1,38 @@
+{
+    "notas": [
+        {
+            "aluno": 2,
+            "notas": [
+                {
+                    "disciplina": "Matemática",
+                    "nota": 10
+                },
+                {
+                    "disciplina": "Português",
+                    "nota": 9.6
+                },
+                {
+                    "disciplina": "História",
+                    "nota": 8.5
+                }
+            ]
+        },
+        {
+            "aluno": 3,
+            "notas": [
+                {
+                    "disciplina": "Matemática",
+                    "nota": 7
+                },
+                {
+                    "disciplina": "Português",
+                    "nota": 6
+                },
+                {
+                    "disciplina": "História",
+                    "nota": 5
+                }
+            ]
+        }
+    ]
+}

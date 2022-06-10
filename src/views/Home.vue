@@ -12,11 +12,13 @@
           label="Search"
           single-line
           hide-details
+          v-model="search"
         ></v-text-field>
       </v-card-title>
       <v-data-table
         :headers="headers"
         :items="desserts"
+        :search="search"
       ></v-data-table>
     </div>
     <div v-else>
@@ -27,17 +29,19 @@
 
 <script>
 import Create from "../components/Create.vue";
+import Users from "../apis/users.js";
 export default {
   components: {
     Create,
+    Users,
   },
   data() {
     return {
+      search: "",
       headers: [
         {
           text: "Usuários",
           align: "start",
-          filterable: false,
           value: "name",
         },
         { text: "Idade", value: "age" },
@@ -47,16 +51,18 @@ export default {
       index: true,
     };
   },
-
+  created() {
+    this.desserts = Users;
+  },
   methods: {
     create() {
       this.$store.state.index = false;
     },
   },
-  watch:{
-    form(newValue){
-     this.desserts.push(newValue)
-    }
+  watch: {
+    form(newValue) {
+      this.desserts.push(newValue);
+    },
   },
   computed: {
     form() {
